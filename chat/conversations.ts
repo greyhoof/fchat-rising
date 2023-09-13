@@ -734,6 +734,14 @@ async function testSmartFilterForChannel(fromChar: Character.Character, conversa
     return false;
 }
 
+async function testHiddenUsersForChannel(fromChar: Character.Character, conversation: ChannelConversation): Promise<boolean> {
+    // filter if we're in a conversation, the character is NOT a channel operator, and the character is in the hidden users list
+    return (isChannel(conversation) &&
+        !fromChar.isChatOp &&
+        core.state.settings.risingHiddenUsers.length > 0 &&
+        core.state.settings.risingHiddenUsers.includes(fromChar.name.toLowerCase()));
+}
+
 export default function(this: any): Interfaces.State {
     state = new State();
     window.addEventListener('focus', () => {
@@ -822,7 +830,7 @@ export default function(this: any): Interfaces.State {
 
         const message = createMessage(MessageType.Message, char, decodeHTML(data.message), time);
 
-        if (await testSmartFilterForChannel(char, conversation) === true) {
+        if (await testHiddenUsersForChannel(char, conversation) === true || await testSmartFilterForChannel(char, conversation) === true) {
             return;
         }
 

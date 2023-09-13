@@ -239,6 +239,8 @@ export namespace Settings {
         readonly risingShowPortraitInMessage: boolean;
 
         readonly risingFilter: SmartFilterSettings;
+
+        readonly risingHiddenUsers: ReadonlyArray<string>;
     }
 }
 

@@ -161,14 +161,14 @@
         getFilteredMembers() {
           const members = this.prefilterMembers();
 
-          if (!core.state.settings.risingFilter.hideChannelMembers) {
+          if (!core.state.settings.risingFilter.hideChannelMembers && core.state.settings.risingHiddenUsers.length < 1) {
             return members;
           }
 
           return members.filter((m) => {
             const p = core.cache.profileCache.getSync(m.character.name);
 
-            return !p || !p.match.isFiltered;
+            return !p || !p.match.isFiltered || !core.state.settings.risingHiddenUsers.includes(p.character.character.name);
           });
         }
 
