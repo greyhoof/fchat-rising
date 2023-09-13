@@ -96,6 +96,8 @@ export class Settings implements ISettings {
         },
         exceptionNames: []
     };
+
+    risingHiddenUsers: string[] = [];
 }
 
 

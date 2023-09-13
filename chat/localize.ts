@@ -189,6 +189,7 @@ Current log location: {1}`,
     'settings.beta': 'Opt-in to test unstable prerelease updates',
     'settings.hwAcceleration': 'Enable hardware acceleration (requires restart)',
     'settings.bbCodeBar': 'Show BBCode formatting bar',
+    'settings.risingHiddenUsers': 'Hide users, their public messages and ads, but NOT their PMs (comma-separated)',
     'fixLogs.action': 'Fix corrupted logs',
     'fixLogs.text': `There are a few reason log files can become corrupted - log files from old versions with bugs that have since been fixed or incomplete file operations caused by computer crashes are the most common.
 If one of your log files is corrupted, you may get an "Unknown Type" error when you log in or when you open a specific tab. You may also experience other issues.

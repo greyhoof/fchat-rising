@@ -212,6 +212,11 @@
                     Show character portrait with each message
                 </label>
             </div>
+
+            <div class="form-group">
+              <label class="control-label" for="risingHiddenUsers">{{l('settings.risingHiddenUsers')}}</label>
+              <input id="risingHiddenUsers" class="form-control" v-model="risingHiddenUsers"/>
+            </div>
         </div>
 
         <div v-show="selectedTab === '3'">
@@ -386,6 +391,8 @@
 
         risingFilter!: SmartFilterSettings = {} as any;
 
+        risingHiddenUsers!: ReadonlyArray<string> = [];
+
         smartFilterTypes = smartFilterTypesOrigin;
 
         async load(): Promise<void> {
@@ -429,6 +436,8 @@
             this.risingShowPortraitInMessage = settings.risingShowPortraitInMessage;
 
             this.risingFilter = settings.risingFilter;
+
+            this.risingHiddenUsers = settings.risingHiddenUsers;
         }
 
         async doImport(): Promise<void> {
@@ -496,7 +505,8 @@
                   ...this.risingFilter,
                   minAge: (minAge !== null && maxAge !== null) ? Math.min(minAge, maxAge) : minAge,
                   maxAge: (minAge !== null && maxAge !== null) ? Math.max(minAge, maxAge) : maxAge
-                }
+                },
+                risingHiddenUsers: this.risingHiddenUsers
             };
 
             console.log('SETTINGS', minAge, maxAge, core.state.settings);
