@@ -168,7 +168,7 @@
           return members.filter((m) => {
             const p = core.cache.profileCache.getSync(m.character.name);
 
-            return !p || !p.match.isFiltered || !core.state.settings.risingHiddenUsers.includes(p.character.character.name);
+            return !p || !p.match.isFiltered || !(!m.character.isChatOp && core.state.settings.risingHiddenUsers.includes(m.character.name));
           });
         }
 

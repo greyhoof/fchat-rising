@@ -506,7 +506,7 @@
                   minAge: (minAge !== null && maxAge !== null) ? Math.min(minAge, maxAge) : minAge,
                   maxAge: (minAge !== null && maxAge !== null) ? Math.max(minAge, maxAge) : maxAge
                 },
-                risingHiddenUsers: this.risingHiddenUsers.split(',').map((x) => x.trim()).filter((x) => x.length)
+                risingHiddenUsers: this.risingHiddenUsers.split(',').map((x) => x.trim().toLowerCase()).filter((x) => x.length)
             };
 
             console.log('SETTINGS', minAge, maxAge, core.state.settings);

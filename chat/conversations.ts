@@ -735,11 +735,10 @@ async function testSmartFilterForChannel(fromChar: Character.Character, conversa
 }
 
 async function testHiddenUsersForChannel(fromChar: Character.Character, conversation: ChannelConversation): Promise<boolean> {
-    // filter if we're in a conversation, the character is NOT a channel operator, and the character is in the hidden users list
-    return (isChannel(conversation) &&
+    return (core.state.settings.risingHiddenUsers.length > 0 &&
         !fromChar.isChatOp &&
-        core.state.settings.risingHiddenUsers.length > 0 &&
-        core.state.settings.risingHiddenUsers.includes(fromChar.name.toLowerCase()));
+        isChannel(conversation) &&
+        core.state.settings.risingHiddenUsers.includes(fromChar.name.trim().toLowerCase()));
 }
 
 export default function(this: any): Interfaces.State {
